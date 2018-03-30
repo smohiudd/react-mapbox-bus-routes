@@ -11,7 +11,7 @@ class Application extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handle_bus = this.handle_bus.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
     this.state = {
       lng: -114.0708,
       lat: 51.0486,
