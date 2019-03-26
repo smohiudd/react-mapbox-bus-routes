@@ -16,7 +16,6 @@ class Application extends React.Component {
       lng: -114.0708,
       lat: 51.0486,
       zoom: 11,
-      buses:bus_list,
       selected_bus: 1,
     };
   }
@@ -32,7 +31,7 @@ class Application extends React.Component {
     });
 
     this.map.on('load', () => { //Get initial geojson data from Calgary Open Data
-      let geojson = 'https://data.calgary.ca/resource/ihrr-t58g.geojson?route_short_name='+this.state.selected_bus+'&$select=the_geom'
+      let geojson = 'https://data.calgary.ca/resource/hpnd-riq4.geojson?route_short_name='+this.state.selected_bus
       this.map.addSource('Bus Route', {
         type: 'geojson',
         data: geojson
@@ -58,7 +57,7 @@ class Application extends React.Component {
     let selection = e.target.value;
 
     this.setState({selected_bus: selection}, () => { //update selected bus route
-      let geojson = 'https://data.calgary.ca/resource/ihrr-t58g.geojson?route_short_name='+this.state.selected_bus+'&$select=the_geom'
+      let geojson = 'https://data.calgary.ca/resource/hpnd-riq4.geojson?route_short_name='+this.state.selected_bus
 
       fetch(geojson)
         .then(response => {
@@ -79,8 +78,7 @@ class Application extends React.Component {
 
   render() {
 
-    let bus_routes = this.state.buses;
-    let optionItems = bus_routes.map((bus) => <option key={bus.route_short_name} value={bus.route_short_name}>{bus.route_short_name+" - "+bus.route_long_name}</option>);
+    let optionItems = bus_list.map((bus) => <option key={bus.route_short_name} value={bus.route_short_name}>{bus.route_short_name+" - "+bus.route_long_name}</option>);
 
     return (
       <div>
